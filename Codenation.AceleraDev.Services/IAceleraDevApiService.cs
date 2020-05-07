@@ -15,7 +15,12 @@ namespace Codenation.AceleraDev.Services
         /// <returns></returns>
         [Get("generate-data")]
         Task<Response> GetDataAsync([Query]string token);
-
+        /// <summary>
+        /// Post response
+        /// </summary>
+        /// <param name="file"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
         [Header("Content-Disposition", "form-data; filename=\"answer.json\"")]
         [Header("Content-Type", "text/plain")]
         [Post("submit-solution")]
