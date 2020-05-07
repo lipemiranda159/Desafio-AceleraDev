@@ -2,6 +2,7 @@
 using RestEase;
 using System;
 using System.IO;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace Codenation.AceleraDev.Services
@@ -21,9 +22,9 @@ namespace Codenation.AceleraDev.Services
         /// <param name="file"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        [Header("Content-Disposition", "form-data; filename=\"answer.json\"")]
-        [Header("Content-Type", "text/plain")]
+        [Header("Content-Disposition", "form-data; file=answer")]
+        [Header("Content-Type", "multipart/form-data")]
         [Post("submit-solution")]
-        Task UploadFileVersionOneAsync([Body] Stream file, [Query] string token);
+        Task<HttpResponseMessage> UploadFileAsync([Body] Stream file, [Query] string token);
     }
 }
