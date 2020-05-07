@@ -19,7 +19,7 @@ namespace Codenation.AceleraDev.Services.Interfaces
             var aux = string.Empty;
             foreach (var item in input.Decifrado)
             {
-                if (HasToAdd(item))
+                if (HasToChangeChar(item))
                 {
                     aux += (char)(item + input.NumeroCasas);
                 }
@@ -33,9 +33,9 @@ namespace Codenation.AceleraDev.Services.Interfaces
             return input;
         }
 
-        private static bool HasToAdd(char item)
+        private static bool HasToChangeChar(char item)
         {
-            return !item.IsNumber() && !item.IsEmpty();
+            return char.IsLetter(item);
         }
 
         public Response Decript(Response input)
@@ -43,7 +43,13 @@ namespace Codenation.AceleraDev.Services.Interfaces
             var aux = string.Empty;
             foreach (var item in input.Cifrado)
             {
-                aux += (char)(item - input.NumeroCasas);
+                if (HasToChangeChar(item))
+                {
+                    aux += (char)(item - input.NumeroCasas);
+                } else
+                {
+                    aux += item;
+                }
             }
             input.Decifrado = aux;
             input.ResumoCriptografico = _sha1CriptService.Sha1Hash(aux);

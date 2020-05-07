@@ -1,4 +1,5 @@
-﻿using Codenation.AceleraDev.Ui.Extensions;
+﻿using Codenation.AceleraDev.Services;
+using Codenation.AceleraDev.Ui.Extensions;
 using Condenation.AceleraDev.Domain.Interfaces;
 using Condenation.AceleraDev.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,16 +15,13 @@ namespace Codenation.AceleraDev.Ui
             serviceCollection.AddServices();
             var services = serviceCollection.BuildServiceProvider();
             var criptService = services.GetService<ICryptographyService>();
+            var aceleraDevApiService = services.GetService<IAceleraDevApiService>();
 
-            var response = criptService.Cript(
-                    new Response()
-                    {
-                        Decifrado = "a ligeira raposa marrom saltou sobre o cachorro cansado",
-                        NumeroCasas = 3
-                    });
+            var responseApi = aceleraDevApiService.GetDataAsync("f2722417236fa3b5fe3409c84a6c58b1daaef9be").Result;
 
+            var responseCript = criptService.Decript(responseApi);
             Console.WriteLine(
-                response.Cifrado
+                responseCript.Decifrado
             );
 
 
