@@ -1,0 +1,48 @@
+header {
+    background-color: black;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+ul {
+    text-decoration-color: white;
+    color: white;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100vh;
+    margin: 2rem;
+}
+
+.appointment,
+.receita {
+    display: flex;
+    flex-direction: column;
+}
+
+.gastos {
+    height: 20px;
+}
+
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+.submit {
+    height: 25px;
+}
+
+.submit-div {
+    padding-top: 1rem;
+    padding-left: 1rem;
+}
